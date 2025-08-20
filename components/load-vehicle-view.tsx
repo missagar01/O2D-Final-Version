@@ -12,13 +12,49 @@ export function LoadVehicleView() {
   const [remarks, setRemarks] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
+  const [supervisorOptions, setSupervisorOptions] = useState([]) // New state for supervisor names
 
   const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxGzl1EP1Vc6C5hB4DyOpmxraeUc0Ar4mAw567VOKlaBk0qwdFxyB37cgiGNiKYXww7/exec"
   const SHEET_NAME = "FMS"
 
   useEffect(() => {
     fetchSheetData()
+    fetchSupervisorNames() // Fetch supervisor names on component mount
   }, [])
+
+  // New function to fetch supervisor names from Login sheet column D
+  const fetchSupervisorNames = async () => {
+    try {
+      const response = await fetch(`${APPS_SCRIPT_URL}?sheet=Login&action=fetch`)
+      const result = await response.json()
+      
+      if (result.success && result.data) {
+        const supervisors = []
+        
+        // Process each row starting from row 1 (index 0)
+// Only take row 1 (index 0)
+const firstRow = result.data.slice(1)
+
+for (let i = 0; i < firstRow.length; i++) {
+  const row = firstRow[i]
+  const supervisorName = row[3] // Column D is index 3 (0-based)
+
+  if (supervisorName && supervisorName.toString().trim() !== "") {
+    supervisors.push(supervisorName.toString().trim())
+  }
+}
+
+        
+        // Remove duplicates and set the options
+        const uniqueSupervisors = [...new Set(supervisors)]
+        setSupervisorOptions(uniqueSupervisors)
+      }
+    } catch (err) {
+      console.error("Error fetching supervisor names:", err)
+      // Fallback to hardcoded options if fetch fails
+      setSupervisorOptions(["John Doe", "Jane Smith", "Mike Johnson", "Sarah Wilson"])
+    }
+  }
 
   const fetchSheetData = async () => {
     try {
@@ -353,10 +389,9 @@ export function LoadVehicleView() {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Select supervisor</option>
-                  <option value="John Doe">John Doe</option>
-                  <option value="Jane Smith">Jane Smith</option>
-                  <option value="Mike Johnson">Mike Johnson</option>
-                  <option value="Sarah Wilson">Sarah Wilson</option>
+                  {supervisorOptions.map((name, index) => (
+                    <option key={index} value={name}>{name}</option>
+                  ))}
                 </select>
               </div>
               

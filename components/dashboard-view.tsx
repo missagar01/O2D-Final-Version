@@ -1141,7 +1141,7 @@ const downloadPDF = async () => {
           </CardContent>
         </Card>
 
-        <Card className="w-full overflow-hidden">
+        {/* <Card className="w-full overflow-hidden">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 p-3 sm:p-4 lg:p-6">
             <CardTitle className="text-xs sm:text-sm lg:text-base font-medium">Payment Success Rate</CardTitle>
             <Badge variant="secondary" className="text-xs shrink-0">
@@ -1154,7 +1154,7 @@ const downloadPDF = async () => {
             </div>
             <p className="text-xs sm:text-sm text-gray-600">Calculated rate</p>
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
 
       <Card className="w-full overflow-hidden">
