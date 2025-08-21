@@ -308,9 +308,10 @@ export function DashboardView() {
         }
 
         // WB Pending - count values in column O (index 14)
-        if (row[14] && row[14].toString().trim() !== "") {
-          metrics.wbPending++
-        }
+        if (row[15] == null || row[15].toString().trim() === "") {
+  metrics.wbPending++
+}
+
 
         // Total Amount - sum column AD (index 29)
         if (row[29] && !isNaN(Number.parseFloat(row[29]))) {
@@ -541,7 +542,7 @@ const downloadPDF = async () => {
               <div class="kpi-value">${metrics.totalGateOut}</div>
             </div>
             <div class="kpi-card">
-              <div class="kpi-label">Total Dispatch Today</div>
+              <div class="kpi-label">Total Dispatch</div>
               <div class="kpi-value">${metrics.totalDispatchToday}</div>
             </div>
             <div class="kpi-card">
@@ -1044,10 +1045,10 @@ const downloadPDF = async () => {
 
         <Card className="w-full overflow-hidden">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 p-3 sm:p-4 lg:p-6">
-            <CardTitle className="text-xs sm:text-sm lg:text-base font-medium">Total Dispatch Today</CardTitle>
-            <Badge variant="secondary" className="text-xs shrink-0">
+            <CardTitle className="text-xs sm:text-sm lg:text-base font-medium">Total Dispatch</CardTitle>
+            {/* <Badge variant="secondary" className="text-xs shrink-0">
               Today
-            </Badge>
+            </Badge> */}
           </CardHeader>
           <CardContent className="p-3 sm:p-4 lg:p-6 pt-0">
             <div className="text-lg sm:text-xl lg:text-2xl font-bold text-blue-600">
@@ -1066,7 +1067,7 @@ const downloadPDF = async () => {
           </CardHeader>
           <CardContent className="p-3 sm:p-4 lg:p-6 pt-0">
             <div className="text-lg sm:text-xl lg:text-2xl font-bold text-blue-600">{displayMetrics.wbIn}</div>
-            <p className="text-xs sm:text-sm text-gray-600">Vehicles waiting</p>
+            {/* <p className="text-xs sm:text-sm text-gray-600">Vehicles waiting</p> */}
           </CardContent>
         </Card>
 
@@ -1079,7 +1080,7 @@ const downloadPDF = async () => {
           </CardHeader>
           <CardContent className="p-3 sm:p-4 lg:p-6 pt-0">
             <div className="text-lg sm:text-xl lg:text-2xl font-bold text-blue-600">{displayMetrics.wbOut}</div>
-            <p className="text-xs sm:text-sm text-gray-600">Vehicles waiting</p>
+            {/* <p className="text-xs sm:text-sm text-gray-600">Vehicles waiting</p> */}
           </CardContent>
         </Card>
 

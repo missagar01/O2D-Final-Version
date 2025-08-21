@@ -110,7 +110,7 @@ export function LoginForm({ onLogin }: LoginFormProps) {
               <LogIn className="h-8 w-8 text-white" />
             </div>
           </div>
-          <CardTitle className="text-2xl font-bold text-purple-gradient">Vehicle Maintenance System</CardTitle>
+          <CardTitle className="text-2xl font-bold text-purple-gradient">O2D</CardTitle>
           <CardDescription>Enter your credentials to access the system</CardDescription>
         </CardHeader>
         <CardContent>
