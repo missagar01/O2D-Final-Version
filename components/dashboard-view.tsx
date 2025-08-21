@@ -113,8 +113,8 @@ export function DashboardView() {
       }
 
       // Column M (index 12) - Salesperson
-      if (row[12] && row[12].toString().trim() !== "") {
-        salespersonsSet.add(row[12].toString().trim())
+      if (row[24] && row[24].toString().trim() !== "") {
+        salespersonsSet.add(row[24].toString().trim())
       }
     })
 
@@ -232,7 +232,7 @@ export function DashboardView() {
     }
 
     // Salesperson filter (Column M - index 12)
-    if (selectedSalesperson !== "All Salespersons" && row[12] && row[12].toString().trim() !== selectedSalesperson) {
+    if (selectedSalesperson !== "All Salespersons" && row[24] && row[24].toString().trim() !== selectedSalesperson) {
       return false
     }
 
@@ -650,7 +650,7 @@ const downloadPDF = async () => {
               <tr>
                 <td>${index + 1}</td>
                 <td>${row[3] || "-"}</td>
-                <td>${row[12] || "-"}</td>
+                <td>${row[24] || "-"}</td>
                 <td>${row[30] || "-"}</td>
                 <td>${row[19] || "-"}</td>
                 <td>${row[1] || "-"}</td>
@@ -1294,7 +1294,7 @@ const downloadPDF = async () => {
                     <TableRow key={index}>
                       <TableCell className="text-xs sm:text-sm">{index + 1}</TableCell>
                       <TableCell className="text-xs sm:text-sm">{row[3] || "-"}</TableCell>
-                      <TableCell className="text-xs sm:text-sm">{row[12] || "-"}</TableCell>
+                      <TableCell className="text-xs sm:text-sm">{row[24] || "-"}</TableCell>
                       <TableCell className="text-xs sm:text-sm">{row[30] || "-"}</TableCell>
                       <TableCell className="text-xs sm:text-sm">{row[19] || "-"}</TableCell>
                       <TableCell className="text-xs sm:text-sm">{row[1] || "-"}</TableCell>
